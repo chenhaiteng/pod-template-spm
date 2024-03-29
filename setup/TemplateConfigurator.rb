@@ -85,15 +85,7 @@ module Pod
               ConfigureIOS.perform(configurator: self)
           end
         when :all
-          ConfigureMacOSSwift.perform(configurator: self)
-          framework = self.ask_with_answers("What language do you want to use?", ["Swift", "ObjC"]).to_sym
-          case framework
-            when :swift
-              ConfigureSwift.perform(configurator: self)
-
-            when :objc
-              ConfigureIOS.perform(configurator: self)
-          end
+          ConfigureAll.perform(configurator: self)
       end
 
       replace_variables_in_files
